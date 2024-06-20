@@ -16,9 +16,6 @@ export const handleResponse = async <T>(response: Response): Promise<T> => {
 };
 export const fetchGet = async <T>(url: string, params?: any): Promise<T> => {
   try {
-    console.log("====================================");
-    console.log(token);
-    console.log("====================================");
     const response = await fetch(BASE_URL + url, {
       method: "GET",
       headers: {

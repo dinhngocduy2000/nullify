@@ -9,6 +9,7 @@ const scopes = [
   "playlist-modify-public",
   "user-top-read",
   "user-follow-read",
+  "user-follow-modify",
 ];
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -28,6 +29,9 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, account }) {
       if (account) {
+        console.log("====================================");
+        console.log("token: ", token, " account: ", account);
+        console.log("====================================");
         token.access_token = account.access_token;
         cookies().set("accessToken", account.access_token ?? "");
       }

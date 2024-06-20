@@ -24,3 +24,8 @@ export interface Image {
 export interface Externalurls {
   spotify: string;
 }
+
+export type FollowUsersParams = {
+  type: "artist" | "user";
+  ids: string[];
+};

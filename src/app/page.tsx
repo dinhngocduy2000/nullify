@@ -2,15 +2,16 @@ import TestingIndex from "@/components/TestingLogout";
 import { getSession } from "@/library/auth/getSessions";
 import {
   fetchCurrentUser,
+  fetchFollowedArtist,
   fetchUserProfile,
   fetchUserTopItems,
 } from "@/networking/usersAPI";
 import Image from "next/image";
 
 export default async function Home() {
-  const user = await fetchUserProfile("smedjan");
+  const followedArtist = await fetchCurrentUser();
   console.log("====================================");
-  console.log(user);
+  console.log("CHECK FOLLOWED ARTISTS: ", followedArtist);
   console.log("====================================");
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
