@@ -3,7 +3,7 @@ import { COOKIE_KEYS } from "./library/enum/cookie-keys";
 import { URL_ENUM } from "./library/enum/url-enum";
 
 export function middleware(request: NextRequest) {
-  const cookies = request.cookies.get("accessToken");
+  const cookies = request.cookies.get(COOKIE_KEYS.ACCESS_TOKEN);
   const response = NextResponse.next();
   if (!cookies && !request.nextUrl.pathname.startsWith(URL_ENUM.LOGIN)) {
     const url = request.nextUrl.clone();
