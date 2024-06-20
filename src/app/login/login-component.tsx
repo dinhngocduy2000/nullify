@@ -4,14 +4,12 @@ import React from "react";
 import Image from "next/image";
 import NullifyIcon from "../../library/assets/svgs/nullify-icon.svg";
 import PrimaryButton from "@/components/PrimaryButton";
-import { useRouter } from "next/navigation";
 
 type Props = {};
 
 const LoginComponent = (props: Props) => {
-  const router = useRouter();
   const handleLogin = () => {
-    signIn("spotify", { callbackUrl: "/" });
+    signIn("", { callbackUrl: "/" });
   };
   return (
     <form
