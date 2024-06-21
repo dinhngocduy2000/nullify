@@ -15,6 +15,9 @@ export const handleResponse = async <T>(response: Response): Promise<T> => {
   return response.json();
 };
 export const fetchGet = async <T>(url: string, params?: any): Promise<T> => {
+  console.log("====================================");
+  console.log(BASE_URL + url, "params: ", params);
+  console.log("====================================");
   try {
     const response = await fetch(BASE_URL + url, {
       method: "GET",
@@ -24,9 +27,7 @@ export const fetchGet = async <T>(url: string, params?: any): Promise<T> => {
       },
       body: JSON.stringify(params),
     });
-    console.log("====================================");
-    console.log("CHECKING API RESPONSE: ", response);
-    console.log("====================================");
+
     return await handleResponse<T>(response);
   } catch (error) {
     console.log("Fetch GET Error:", (error as Error).message);

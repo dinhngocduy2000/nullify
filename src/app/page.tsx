@@ -1,6 +1,7 @@
 import TestingIndex from "@/components/TestingLogout";
 import { getSession } from "@/library/auth/getSessions";
 import {
+  checkIfFollowUser,
   fetchCurrentUser,
   fetchFollowedArtist,
   fetchUserProfile,
@@ -9,7 +10,10 @@ import {
 import Image from "next/image";
 
 export default async function Home() {
-  const followedArtist = await fetchCurrentUser();
+  const followedArtist = await checkIfFollowUser({
+    type: "user",
+    ids: ["1vCWHaC5f2uS3yhpwWbIA6"],
+  });
   console.log("====================================");
   console.log("CHECK FOLLOWED ARTISTS: ", followedArtist);
   console.log("====================================");

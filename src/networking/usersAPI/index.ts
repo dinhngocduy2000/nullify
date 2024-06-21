@@ -42,3 +42,14 @@ export const unfollowUsersArtists = (data: FollowUsersParams): Promise<any> => {
     { ids: data.ids }
   );
 };
+
+export const checkIfFollowUser = (
+  data: FollowUsersParams
+): Promise<boolean[]> => {
+  return fetchGet(
+    USER_URL.CHECK_IF_FOLLOW.replace("${ids}", data.ids.join("%")).replace(
+      "${type}",
+      data.type
+    )
+  );
+};
