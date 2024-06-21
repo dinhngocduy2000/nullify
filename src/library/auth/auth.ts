@@ -2,6 +2,7 @@
 import { NextAuthOptions } from "next-auth";
 import SpotifyProvider from "next-auth/providers/spotify";
 import { cookies } from "next/headers";
+import { COOKIE_KEYS } from "../enum/cookie-keys";
 const scopes = [
   "user-read-email",
   "playlist-read-private",
@@ -33,7 +34,8 @@ export const authOptions: NextAuthOptions = {
         console.log("token: ", token, " account: ", account);
         console.log("====================================");
         token.access_token = account.access_token;
-        cookies().set("accessToken", account.access_token ?? "");
+        cookies().set(COOKIE_KEYS.ACCESS_TOKEN, account.access_token ?? "");
+        cookies().set(COOKIE_KEYS.REFRESH_TOKEN, account.refresh_token ?? "");
       }
       return token;
     },

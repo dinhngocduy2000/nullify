@@ -2,7 +2,6 @@ import { COOKIE_KEYS } from "@/library/enum/cookie-keys";
 import { URL_ENUM } from "@/library/enum/url-enum";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-const token = cookies().get(COOKIE_KEYS.ACCESS_TOKEN)?.value;
 export const checkTokenExpiration = (response: Response): void => {
   if (response.status === 401 || response.status === 403) {
     return redirect(URL_ENUM.LOGIN);
@@ -14,10 +13,13 @@ export const handleResponse = async <T>(response: Response): Promise<T> => {
 
   return response.json();
 };
+
 export const fetchGet = async <T>(url: string, params?: any): Promise<T> => {
   console.log("====================================");
   console.log(BASE_URL + url, "params: ", params);
   console.log("====================================");
+  const token = cookies().get(COOKIE_KEYS.ACCESS_TOKEN)?.value;
+
   try {
     const response = await fetch(BASE_URL + url, {
       method: "GET",
@@ -35,6 +37,8 @@ export const fetchGet = async <T>(url: string, params?: any): Promise<T> => {
   }
 };
 export const fetchDelete = async <T>(url: string, body?: any): Promise<T> => {
+  const token = cookies().get(COOKIE_KEYS.ACCESS_TOKEN)?.value;
+
   try {
     const response = await fetch(url, {
       method: "DELETE",
@@ -52,6 +56,8 @@ export const fetchDelete = async <T>(url: string, body?: any): Promise<T> => {
   }
 };
 export const fetchPut = async <T>(url: string, data: any): Promise<T> => {
+  const token = cookies().get(COOKIE_KEYS.ACCESS_TOKEN)?.value;
+
   try {
     const response = await fetch(url, {
       method: "PUT",
@@ -69,6 +75,8 @@ export const fetchPut = async <T>(url: string, data: any): Promise<T> => {
   }
 };
 export const fetchPost = async <T>(url: string, data: any): Promise<T> => {
+  const token = cookies().get(COOKIE_KEYS.ACCESS_TOKEN)?.value;
+
   try {
     const response = await fetch(url, {
       method: "POST",
