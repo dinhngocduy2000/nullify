@@ -34,7 +34,9 @@ export const authOptions: NextAuthOptions = {
         console.log("token: ", token, " account: ", account);
         console.log("====================================");
         token.access_token = account.access_token;
-        cookies().set(COOKIE_KEYS.ACCESS_TOKEN, account.access_token ?? "");
+        cookies().set(COOKIE_KEYS.ACCESS_TOKEN, account.access_token ?? "", {
+          expires: new Date((account.expires_at ?? 0) * 1000),
+        });
         cookies().set(COOKIE_KEYS.REFRESH_TOKEN, account.refresh_token ?? "");
       }
       return token;

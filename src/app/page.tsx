@@ -2,6 +2,7 @@ import TestingIndex from "@/components/TestingLogout";
 import Image from "next/image";
 import HomePage from "./(home)/HomePage";
 import { Suspense } from "react";
+import moment from "moment";
 
 export default async function Home() {
   return (
