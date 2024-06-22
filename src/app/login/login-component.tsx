@@ -13,7 +13,7 @@ const LoginComponent = (props: Props) => {
   };
   return (
     <form
-      action={handleLogin}
+      action={() => handleLogin()}
       className="h-screen bg-gradient-to-b from-slate-600 to-slate-900 flex flex-col gap-10 justify-center items-center"
     >
       <Image src={NullifyIcon} alt="Nullify logo" />

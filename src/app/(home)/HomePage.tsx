@@ -9,9 +9,8 @@ export default async function HomePage({ test }: any) {
     type: "user",
     ids: ["1vCWHaC5f2uS3yhpwWbIA6"],
   });
-  const session = await getSession();
   console.log("====================================");
-  console.log(session);
+  console.log(followedArtist);
   console.log("====================================");
   return (
     <>

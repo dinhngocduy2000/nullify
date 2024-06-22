@@ -3,6 +3,7 @@ import { NextAuthOptions } from "next-auth";
 import SpotifyProvider from "next-auth/providers/spotify";
 import { cookies } from "next/headers";
 import { COOKIE_KEYS } from "../enum/cookie-keys";
+import moment from "moment";
 const scopes = [
   "user-read-email",
   "playlist-read-private",
@@ -33,10 +34,11 @@ export const authOptions: NextAuthOptions = {
         console.log("====================================");
         console.log("token: ", token, " account: ", account);
         console.log("====================================");
+        token.expires_at = account.expires_at;
         token.access_token = account.access_token;
-        cookies().set(COOKIE_KEYS.ACCESS_TOKEN, account.access_token ?? "", {
-          expires: new Date((account.expires_at ?? 0) * 1000),
-        });
+
+        cookies().set(COOKIE_KEYS.ACCESS_TOKEN, account.access_token ?? "");
+
         cookies().set(COOKIE_KEYS.REFRESH_TOKEN, account.refresh_token ?? "");
       }
       return token;
