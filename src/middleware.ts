@@ -28,6 +28,13 @@ export async function middleware(request: NextRequest) {
   const cookies = request.cookies.get(COOKIE_KEYS.ACCESS_TOKEN);
   const response = NextResponse.next();
   if (!cookies && !request.nextUrl.pathname.startsWith(URL_ENUM.LOGIN)) {
+    const refreshToken = request.cookies.get(COOKIE_KEYS.REFRESH_TOKEN)?.value;
+
+    if (!refreshToken) {
+      const url = request.nextUrl.clone();
+      url.pathname = URL_ENUM.LOGIN;
+      return NextResponse.rewrite(url);
+    }
     const refreshed_token = await getRefreshToken(request);
     response.cookies.set(COOKIE_KEYS.ACCESS_TOKEN, refreshed_token);
     return response;
