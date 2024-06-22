@@ -9,7 +9,11 @@ const TestingIndex = (props: Props) => {
   const handleLogout = () => {
     signOut({ callbackUrl: "/login" });
   };
-  return <PrimaryButton onClick={() => handleLogout()}>Test</PrimaryButton>;
+  return (
+    <PrimaryButton className="w-fit px-12 py-3" onClick={() => handleLogout()}>
+      Now please log out
+    </PrimaryButton>
+  );
 };
 
 export default TestingIndex;
