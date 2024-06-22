@@ -18,7 +18,7 @@ const LoginComponent = (props: Props) => {
     >
       <Image src={NullifyIcon} alt="Nullify logo" />
       <p className="font-semibold text-lg">Welcome to Nullify!</p>
-      <PrimaryButton className="max-w-[200px]" type="submit">
+      <PrimaryButton className="w-[200px] p-3" type="submit">
         Log in
       </PrimaryButton>
     </form>

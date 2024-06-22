@@ -10,7 +10,10 @@ const TestingIndex = (props: Props) => {
     signOut({ callbackUrl: "/login" });
   };
   return (
-    <PrimaryButton className="w-fit px-12 py-3" onClick={() => handleLogout()}>
+    <PrimaryButton
+      className="w-[200px] px-4 py-3"
+      onClick={() => handleLogout()}
+    >
       Now please log out
     </PrimaryButton>
   );
