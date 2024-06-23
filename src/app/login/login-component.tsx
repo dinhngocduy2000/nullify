@@ -14,10 +14,10 @@ const LoginComponent = (props: Props) => {
   return (
     <form
       action={() => handleLogin()}
-      className="h-screen bg-gradient-to-b from-slate-600 to-slate-900 flex flex-col gap-10 justify-center items-center"
+      className="flex h-screen flex-col items-center justify-center gap-10 bg-gradient-to-b from-slate-600 to-slate-900"
     >
       <Image src={NullifyIcon} alt="Nullify logo" />
-      <p className="font-semibold text-lg">Welcome to Nullify!</p>
+      <p className="text-lg font-semibold">Welcome to Nullify!</p>
       <PrimaryButton className="w-[200px] p-3" type="submit">
         Log in
       </PrimaryButton>
