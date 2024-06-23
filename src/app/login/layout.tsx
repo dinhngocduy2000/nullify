@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import AuthProvider from "./authProvider";
 import { Suspense } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Nullify",
+  title: "Nullify - Login",
   description: "A music player based on Spotify!",
   icons: {
     icon: "./icon.ico",
@@ -25,7 +24,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Suspense fallback={"Loading2..."}>
           <div className="h-screen w-screen bg-gradient-to-b from-green-400 to-slate-900">
-            <AuthProvider>{children}</AuthProvider>
+            {children}
           </div>
         </Suspense>
       </body>

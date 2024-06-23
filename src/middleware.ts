@@ -1,11 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { COOKIE_KEYS } from "./library/enum/cookie-keys";
 import { URL_ENUM } from "./library/enum/url-enum";
+import { REFRESH_TOKEN_INTERFACE } from "./library/interface/auth/refresh-token";
 
 const getRefreshToken = async (request: NextRequest) => {
   const refreshToken = request.cookies.get(COOKIE_KEYS.REFRESH_TOKEN)?.value;
   const url = "https://accounts.spotify.com/api/token";
-
+  console.log("====================================");
+  console.log("GETTING REFRESHED IN MIDDLEWARE");
+  console.log("====================================");
   const payload = {
     method: "POST",
     headers: {
@@ -20,14 +23,19 @@ const getRefreshToken = async (request: NextRequest) => {
   };
 
   const body = await fetch(url, payload);
-  const refresh_token = await body.json();
+  const refresh_token: REFRESH_TOKEN_INTERFACE = await body.json();
 
-  return refresh_token.access_token;
+  return refresh_token;
 };
 export async function middleware(request: NextRequest) {
   const cookies = request.cookies.get(COOKIE_KEYS.ACCESS_TOKEN);
+  const expires_at = Number(request.cookies.get(COOKIE_KEYS.EXPIRES_AT)?.value);
   const response = NextResponse.next();
-  if (!cookies && !request.nextUrl.pathname.startsWith(URL_ENUM.LOGIN)) {
+
+  if (
+    (!cookies || Date.now() > expires_at || !expires_at) &&
+    !request.nextUrl.pathname.startsWith(URL_ENUM.LOGIN)
+  ) {
     const refreshToken = request.cookies.get(COOKIE_KEYS.REFRESH_TOKEN)?.value;
 
     if (!refreshToken) {
@@ -36,7 +44,14 @@ export async function middleware(request: NextRequest) {
       return NextResponse.rewrite(url);
     }
     const refreshed_token = await getRefreshToken(request);
-    response.cookies.set(COOKIE_KEYS.ACCESS_TOKEN, refreshed_token);
+    response.cookies.set(
+      COOKIE_KEYS.EXPIRES_AT,
+      (Date.now() + refreshed_token.expires_in * 1000).toString(),
+    );
+    response.cookies.set(
+      COOKIE_KEYS.ACCESS_TOKEN,
+      refreshed_token.access_token,
+    );
     return response;
   } else if (request.nextUrl.pathname.startsWith(URL_ENUM.LOGIN) && cookies) {
     response.cookies.delete(COOKIE_KEYS.ACCESS_TOKEN);

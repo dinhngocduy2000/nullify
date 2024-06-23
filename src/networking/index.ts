@@ -1,6 +1,7 @@
 import { getSession } from "@/library/auth/getSessions";
 import { COOKIE_KEYS } from "@/library/enum/cookie-keys";
 import { URL_ENUM } from "@/library/enum/url-enum";
+import { REFRESH_TOKEN_INTERFACE } from "@/library/interface/auth/refresh-token";
 import { getServerSession } from "next-auth";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -17,14 +18,14 @@ export const handleResponse = async <T>(response: Response): Promise<T> => {
 };
 
 const handleCheckToken = async () => {
-  const session = await getSession();
-  console.log("====================================");
-  console.log(session.token.expires_at * 1000);
-  console.log("====================================");
-  if (Date.now() > session.token.expires_at * 1000) {
+  const token = cookies().get(COOKIE_KEYS.ACCESS_TOKEN)?.value;
+  const expires_at = cookies().get(COOKIE_KEYS.EXPIRES_AT)?.value;
+
+  if (Date.now() > Number(expires_at) * 1000 || !token || !expires_at) {
     return await getRefreshToken();
+  } else {
+    return token;
   }
-  return session.token.access_token;
 };
 
 export const getRefreshToken = async (): Promise<string> => {
@@ -41,22 +42,19 @@ export const getRefreshToken = async (): Promise<string> => {
       grant_type: "refresh_token",
       refresh_token: refreshToken ?? "",
       client_id: process.env.SPOTIFY_CLIENT_ID ?? "",
+      client_secret: process.env.SPOTIFY_CLIENT_SECRET ?? "",
     }),
   };
   const body = await fetch(url, payload);
-  const response = await body.json();
-
-  console.log("====================================");
-  console.log("GETTING REFRESHED TOKEN: ", response);
-  console.log("====================================");
-
-  cookies().set(COOKIE_KEYS.ACCESS_TOKEN, response.accessToken);
-  cookies().set(COOKIE_KEYS.REFRESH_TOKEN, response.refreshToken);
-  return response.accessToken;
+  const response: REFRESH_TOKEN_INTERFACE = await body.json();
+  return response.access_token;
 };
 
 export const fetchGet = async <T>(url: string, params?: any): Promise<T> => {
   const token = await handleCheckToken();
+  console.log("====================================");
+  console.log(token);
+  console.log("====================================");
   try {
     const response = await fetch(BASE_URL + url, {
       method: "GET",

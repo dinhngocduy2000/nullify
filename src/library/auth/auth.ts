@@ -17,7 +17,7 @@ export const authOptions: NextAuthOptions = {
   providers: [
     SpotifyProvider({
       authorization: `https://accounts.spotify.com/authorize?scope=${scopes.join(
-        ","
+        ",",
       )}`,
       clientId: process.env.SPOTIFY_CLIENT_ID ?? "",
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET ?? "",
@@ -38,7 +38,10 @@ export const authOptions: NextAuthOptions = {
         token.access_token = account.access_token;
 
         cookies().set(COOKIE_KEYS.ACCESS_TOKEN, account.access_token ?? "");
-
+        cookies().set(
+          COOKIE_KEYS.EXPIRES_AT,
+          account.expires_at?.toString() ?? "",
+        );
         cookies().set(COOKIE_KEYS.REFRESH_TOKEN, account.refresh_token ?? "");
       }
       return token;
