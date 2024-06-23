@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import { Suspense } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,14 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Suspense fallback={"Loading2..."}>
-          <div className="h-screen w-screen bg-gradient-to-b from-green-400 to-slate-900">
-            {children}
-          </div>
-        </Suspense>
-      </body>
-    </html>
+    <div className="flex h-screen w-screen items-center justify-center bg-gradient-to-b from-green-400 to-slate-900">
+      {children}
+    </div>
   );
 }

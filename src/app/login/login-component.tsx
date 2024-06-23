@@ -12,7 +12,10 @@ const LoginComponent = (props: Props) => {
     signIn("", { callbackUrl: "/" });
   };
   return (
-    <form action={() => handleLogin()}>
+    <form
+      action={() => handleLogin()}
+      className="flex flex-col items-center gap-2"
+    >
       <Image src={NullifyIcon} alt="Nullify logo" />
       <p className="text-lg font-semibold">Welcome to Nullify!</p>
       <PrimaryButton className="w-[200px] p-3" type="submit">

@@ -56,6 +56,7 @@ export async function middleware(request: NextRequest) {
   } else if (request.nextUrl.pathname.startsWith(URL_ENUM.LOGIN) && cookies) {
     response.cookies.delete(COOKIE_KEYS.ACCESS_TOKEN);
     response.cookies.delete(COOKIE_KEYS.NEXT_AUTH_SESSION);
+    response.cookies.delete(COOKIE_KEYS.REFRESH_TOKEN);
   }
   return response;
 }
