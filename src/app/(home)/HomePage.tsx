@@ -7,11 +7,9 @@ import React from "react";
 type Props = {};
 export default async function HomePage({ test }: any) {
   const userProfile = await fetchCurrentUser();
-  console.log("====================================");
-  console.log(userProfile);
-  console.log("====================================");
+
   return (
-    <div className="py-2 px-4 flex gap-4 items-center bg-green-200 mb-4 rounded-lg">
+    <div className="mb-4 flex items-center gap-4 rounded-lg bg-green-200 px-4 py-2">
       <Image
         src={userProfile.images[0].url}
         alt=""
@@ -19,7 +17,7 @@ export default async function HomePage({ test }: any) {
         height={userProfile.images[0].height}
         width={userProfile.images[0].width}
       />
-      <p className="text-green-700 font-semibold">
+      <p className="font-semibold text-green-700">
         Hello {userProfile.display_name}
       </p>
     </div>

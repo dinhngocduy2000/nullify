@@ -42,23 +42,36 @@ export async function middleware(request: NextRequest) {
       const url = request.nextUrl.clone();
       url.pathname = URL_ENUM.LOGIN;
       return NextResponse.rewrite(url);
+    } else if (refreshToken && expires_at && Date.now() < expires_at) {
+      console.log("====================================");
+      console.log("First time Login after Logout?");
+      console.log("====================================");
+      if (!cookies) {
+        // if somehow cookies is gone after logging in
+        const url = request.nextUrl.clone();
+        url.pathname = URL_ENUM.LOGIN;
+        return NextResponse.rewrite(url);
+      }
+      return response;
+    } else {
+      const refreshed_token = await getRefreshToken(request);
+      response.cookies.set(
+        COOKIE_KEYS.EXPIRES_AT,
+        (Date.now() + refreshed_token.expires_in * 1000).toString(),
+      );
+      response.cookies.set(
+        COOKIE_KEYS.ACCESS_TOKEN,
+        refreshed_token.access_token,
+      );
+      return response;
     }
-    const refreshed_token = await getRefreshToken(request);
-    response.cookies.set(
-      COOKIE_KEYS.EXPIRES_AT,
-      (Date.now() + refreshed_token.expires_in * 1000).toString(),
-    );
-    response.cookies.set(
-      COOKIE_KEYS.ACCESS_TOKEN,
-      refreshed_token.access_token,
-    );
-    return response;
   } else if (request.nextUrl.pathname.startsWith(URL_ENUM.LOGIN) && cookies) {
     response.cookies.delete(COOKIE_KEYS.ACCESS_TOKEN);
     response.cookies.delete(COOKIE_KEYS.NEXT_AUTH_SESSION);
     response.cookies.delete(COOKIE_KEYS.REFRESH_TOKEN);
+    response.cookies.delete(COOKIE_KEYS.EXPIRES_AT);
+    return response;
   }
-  return response;
 }
 export const config = {
   matcher: [

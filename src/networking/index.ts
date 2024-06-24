@@ -32,7 +32,9 @@ export const getRefreshToken = async (): Promise<string> => {
   // refresh token that has been previously stored
   const refreshToken = cookies().get(COOKIE_KEYS.REFRESH_TOKEN)?.value;
   const url = "https://accounts.spotify.com/api/token";
-
+  console.log("====================================");
+  console.log("GETTING REFRESH TOKEN IN API");
+  console.log("====================================");
   const payload = {
     method: "POST",
     headers: {
@@ -53,7 +55,9 @@ export const getRefreshToken = async (): Promise<string> => {
 export const fetchGet = async <T>(url: string, params?: any): Promise<T> => {
   const token = await handleCheckToken();
   console.log("====================================");
-  console.log(token);
+  console.log(`CHECKING FETCH GET TOKEN: ${token}`);
+  console.log(`CHECKING FETCH GET URL: ${BASE_URL + url}`);
+  console.log(`CHECKING FETCH GET PARAMS: ${params}`);
   console.log("====================================");
   try {
     const response = await fetch(BASE_URL + url, {
@@ -64,8 +68,11 @@ export const fetchGet = async <T>(url: string, params?: any): Promise<T> => {
       },
       body: JSON.stringify(params),
     });
-
-    return await handleResponse<T>(response);
+    const jsonRes = await handleResponse<T>(response);
+    console.log("====================================");
+    console.log("CHECKING FETCH GET RESPONSE: ", jsonRes);
+    console.log("====================================");
+    return jsonRes;
   } catch (error) {
     console.log("Fetch GET Error:", (error as Error).message);
     throw error;

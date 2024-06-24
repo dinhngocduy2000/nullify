@@ -40,7 +40,7 @@ export const authOptions: NextAuthOptions = {
         cookies().set(COOKIE_KEYS.ACCESS_TOKEN, account.access_token ?? "");
         cookies().set(
           COOKIE_KEYS.EXPIRES_AT,
-          account.expires_at?.toString() ?? "",
+          ((account.expires_at ?? 0) * 1000)?.toString(),
         );
         cookies().set(COOKIE_KEYS.REFRESH_TOKEN, account.refresh_token ?? "");
       }
