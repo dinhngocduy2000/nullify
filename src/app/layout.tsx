@@ -23,11 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Suspense fallback={"Loading2..."}>
-          <div className="h-screen w-screen bg-gradient-to-b from-indigo-700 via-indigo-900 to-slate-900">
-            <AuthProvider>{children}</AuthProvider>
-          </div>
-        </Suspense>
+        <div className="flex h-screen w-screen items-center justify-center bg-gradient-to-b from-indigo-700 via-indigo-900 to-slate-900">
+          <AuthProvider>{children}</AuthProvider>
+        </div>
       </body>
     </html>
   );

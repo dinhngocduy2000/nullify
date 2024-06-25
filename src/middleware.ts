@@ -6,9 +6,7 @@ import { REFRESH_TOKEN_INTERFACE } from "./library/interface/auth/refresh-token"
 const getRefreshToken = async (request: NextRequest) => {
   const refreshToken = request.cookies.get(COOKIE_KEYS.REFRESH_TOKEN)?.value;
   const url = "https://accounts.spotify.com/api/token";
-  console.log("====================================");
-  console.log("GETTING REFRESHED IN MIDDLEWARE");
-  console.log("====================================");
+
   const payload = {
     method: "POST",
     headers: {
@@ -24,7 +22,9 @@ const getRefreshToken = async (request: NextRequest) => {
 
   const body = await fetch(url, payload);
   const refresh_token: REFRESH_TOKEN_INTERFACE = await body.json();
-
+  console.log("====================================");
+  console.log("GETTING REFRESHED IN MIDDLEWARE: ", refresh_token.access_token);
+  console.log("====================================");
   return refresh_token;
 };
 export async function middleware(request: NextRequest) {
