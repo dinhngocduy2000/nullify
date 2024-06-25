@@ -2,14 +2,27 @@ import TestingIndex from "@/components/TestingLogout";
 import HomePage from "./(home)/HomePage";
 import { Suspense } from "react";
 import { fetchCurrentUser } from "@/networking/usersAPI";
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate,
+} from "@tanstack/react-query";
 
 export default async function Home() {
-  const userProfile = await fetchCurrentUser();
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ["users"],
+    queryFn: () => fetchCurrentUser(),
+  });
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <Suspense fallback="Loading...">
-        <HomePage />
-      </Suspense>
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <Suspense fallback="Loading...">
+          <HomePage />
+        </Suspense>
+      </HydrationBoundary>
+
       <TestingIndex />
     </main>
   );

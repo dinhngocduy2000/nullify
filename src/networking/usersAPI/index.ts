@@ -11,7 +11,7 @@ export const fetchCurrentUser = (): Promise<UserInterface> => {
 };
 
 export const fetchUserTopItems = (
-  type: "tracks" | "artists"
+  type: "tracks" | "artists",
 ): Promise<UsersTopItems> => {
   return fetchGet(USER_URL.USER_TOP_ITEMS + `/${type}`);
 };
@@ -28,28 +28,28 @@ export const followUsersArtists = (data: FollowUsersParams): Promise<any> => {
   return fetchPut(
     USER_URL.FOLLOW_USERS_ARTISTS.replace("${type}", data.type).replace(
       "${ids}",
-      data.ids.join("%")
+      data.ids.join("%"),
     ),
-    { ids: data.ids }
+    { ids: data.ids },
   );
 };
 export const unfollowUsersArtists = (data: FollowUsersParams): Promise<any> => {
   return fetchDelete(
     USER_URL.FOLLOW_USERS_ARTISTS.replace("${type}", data.type).replace(
       "${ids}",
-      data.ids.join("%")
+      data.ids.join("%"),
     ),
-    { ids: data.ids }
+    { ids: data.ids },
   );
 };
 
 export const checkIfFollowUser = (
-  data: FollowUsersParams
+  data: FollowUsersParams,
 ): Promise<boolean[]> => {
   return fetchGet(
     USER_URL.CHECK_IF_FOLLOW.replace("${ids}", data.ids.join("%")).replace(
       "${type}",
-      data.type
-    )
+      data.type,
+    ),
   );
 };

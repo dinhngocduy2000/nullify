@@ -1,10 +1,9 @@
-import { getSession } from "@/library/auth/getSessions";
 import { COOKIE_KEYS } from "@/library/enum/cookie-keys";
 import { URL_ENUM } from "@/library/enum/url-enum";
 import { REFRESH_TOKEN_INTERFACE } from "@/library/interface/auth/refresh-token";
-import { getServerSession } from "next-auth";
-import { cookies } from "next/headers";
+import { getCookies } from "next-client-cookies/server";
 import { redirect } from "next/navigation";
+
 export const checkTokenExpiration = (response: Response): void => {
   if (response.status === 401 || response.status === 403) {
     return redirect(URL_ENUM.LOGIN);
@@ -18,8 +17,9 @@ export const handleResponse = async <T>(response: Response): Promise<T> => {
 };
 
 const handleCheckToken = async () => {
-  const token = cookies().get(COOKIE_KEYS.ACCESS_TOKEN)?.value;
-  const expires_at = cookies().get(COOKIE_KEYS.EXPIRES_AT)?.value;
+  const cookie = getCookies();
+  const token = cookie.get(COOKIE_KEYS.ACCESS_TOKEN);
+  const expires_at = cookie.get(COOKIE_KEYS.EXPIRES_AT);
 
   if (Date.now() > Number(expires_at) * 1000 || !token || !expires_at) {
     return await getRefreshToken();
@@ -30,7 +30,8 @@ const handleCheckToken = async () => {
 
 export const getRefreshToken = async (): Promise<string> => {
   // refresh token that has been previously stored
-  const refreshToken = cookies().get(COOKIE_KEYS.REFRESH_TOKEN)?.value;
+  const cookie = getCookies();
+  const refreshToken = cookie.get(COOKIE_KEYS.REFRESH_TOKEN);
   const url = "https://accounts.spotify.com/api/token";
   console.log("====================================");
   console.log("GETTING REFRESH TOKEN IN API");
@@ -54,7 +55,7 @@ export const getRefreshToken = async (): Promise<string> => {
 
 export const fetchGet = async <T>(url: string, params?: any): Promise<T> => {
   const token = await handleCheckToken();
-  console.log("====================================");
+
   console.log(`CHECKING FETCH GET TOKEN: ${token}`);
   console.log(`CHECKING FETCH GET URL: ${BASE_URL + url}`);
   console.log(`CHECKING FETCH GET PARAMS: ${params}`);
@@ -79,7 +80,7 @@ export const fetchGet = async <T>(url: string, params?: any): Promise<T> => {
   }
 };
 export const fetchDelete = async <T>(url: string, body?: any): Promise<T> => {
-  const token = cookies().get(COOKIE_KEYS.ACCESS_TOKEN)?.value;
+  const token = await handleCheckToken();
 
   try {
     const response = await fetch(url, {
@@ -98,7 +99,7 @@ export const fetchDelete = async <T>(url: string, body?: any): Promise<T> => {
   }
 };
 export const fetchPut = async <T>(url: string, data: any): Promise<T> => {
-  const token = cookies().get(COOKIE_KEYS.ACCESS_TOKEN)?.value;
+  const token = handleCheckToken();
 
   try {
     const response = await fetch(url, {
@@ -117,7 +118,7 @@ export const fetchPut = async <T>(url: string, data: any): Promise<T> => {
   }
 };
 export const fetchPost = async <T>(url: string, data: any): Promise<T> => {
-  const token = cookies().get(COOKIE_KEYS.ACCESS_TOKEN)?.value;
+  const token = handleCheckToken();
 
   try {
     const response = await fetch(url, {
