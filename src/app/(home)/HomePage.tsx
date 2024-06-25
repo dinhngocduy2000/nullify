@@ -1,4 +1,5 @@
 "use client";
+
 import { fetchCurrentUser } from "@/networking/usersAPI";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
