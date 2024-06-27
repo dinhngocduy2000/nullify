@@ -13,16 +13,14 @@ const scopes = [
   "user-follow-read",
   "user-follow-modify",
 ];
-console.log("====================================");
-console.log("checking env: ", process.env.SPOTIFY_CLIENT_ID);
-console.log("====================================");
+const clientId = process.env.SPOTIFY_CLIENT_ID;
 export const authOptions: NextAuthOptions = {
   providers: [
     SpotifyProvider({
       authorization: `https://accounts.spotify.com/authorize?scope=${scopes.join(
         ",",
       )}`,
-      clientId: process.env.SPOTIFY_CLIENT_ID as string,
+      clientId: clientId as string,
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET as string,
     }),
     // Add more providers heres
