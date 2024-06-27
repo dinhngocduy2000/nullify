@@ -22,8 +22,8 @@ export const authOptions: NextAuthOptions = {
       authorization: `https://accounts.spotify.com/authorize?scope=${scopes.join(
         ",",
       )}`,
-      clientId: process.env.SPOTIFY_CLIENT_ID ?? "",
-      clientSecret: process.env.SPOTIFY_CLIENT_SECRET ?? "",
+      clientId: process.env.SPOTIFY_CLIENT_ID as string,
+      clientSecret: process.env.SPOTIFY_CLIENT_SECRET as string,
     }),
     // Add more providers heres
   ],
