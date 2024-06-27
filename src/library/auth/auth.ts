@@ -13,7 +13,7 @@ const scopes = [
   "user-follow-read",
   "user-follow-modify",
 ];
-const clientId = process.env.SPOTIFY_CLIENT_ID;
+const clientId = process.env.CLIENT_ID;
 export const authOptions: NextAuthOptions = {
   providers: [
     SpotifyProvider({
