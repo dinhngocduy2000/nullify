@@ -25,7 +25,7 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.SPOTIFY_CLIENT_ID ?? "",
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET ?? "",
     }),
-    // Add more providers heres
+    // Add more providers here
   ],
   session: {
     // Use JSON Web Tokens for session instead of database sessions.
