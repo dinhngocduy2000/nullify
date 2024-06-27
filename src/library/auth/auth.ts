@@ -24,6 +24,7 @@ export const authOptions: NextAuthOptions = {
     }),
     // Add more providers here
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   session: {
     // Use JSON Web Tokens for session instead of database sessions.
     strategy: "jwt",
