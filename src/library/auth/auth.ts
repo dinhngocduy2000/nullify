@@ -13,6 +13,9 @@ const scopes = [
   "user-follow-read",
   "user-follow-modify",
 ];
+console.log("====================================");
+console.log("checking env: ", process.env.SPOTIFY_CLIENT_ID);
+console.log("====================================");
 export const authOptions: NextAuthOptions = {
   providers: [
     SpotifyProvider({
