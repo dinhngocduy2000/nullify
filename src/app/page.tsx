@@ -7,12 +7,13 @@ import {
   QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
+import { QUERY_KEYS } from "@/library/enum/query-keys";
 
 export default async function Home() {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ["users"],
+    queryKey: [QUERY_KEYS.USERS],
     queryFn: () => fetchCurrentUser(),
   });
   return (

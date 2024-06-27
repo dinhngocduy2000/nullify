@@ -1,14 +1,16 @@
 "use client";
 
+import { QUERY_KEYS } from "@/library/enum/query-keys";
 import { fetchCurrentUser } from "@/networking/usersAPI";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import React from "react";
+import ChildComponent from "./ChildComponent";
 
 type Props = {};
 export default function HomePage({ test }: any) {
   const { data: userProfile } = useQuery({
-    queryKey: ["users"],
+    queryKey: [QUERY_KEYS.USERS],
     queryFn: () => fetchCurrentUser(),
   });
   return (
@@ -23,6 +25,7 @@ export default function HomePage({ test }: any) {
       <p className="font-semibold text-green-700">
         Hello {userProfile?.display_name}
       </p>
+      <ChildComponent />
     </div>
   );
 }
