@@ -27,7 +27,7 @@ const getRefreshToken = async (
   const refresh_token: REFRESH_TOKEN_INTERFACE = await body.json();
   response.cookies.set(COOKIE_KEYS.ACCESS_TOKEN, refresh_token.access_token);
   console.log("====================================");
-  console.log("GETTING REFRESHED IN MIDDLEWARE: ", refresh_token.access_token);
+  console.log("GETTING REFRESHED IN MIDDLEWAREs: ", refresh_token.access_token);
   console.log("====================================");
   return refresh_token;
 };
