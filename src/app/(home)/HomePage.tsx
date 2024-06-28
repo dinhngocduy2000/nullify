@@ -13,6 +13,9 @@ export default function HomePage({ test }: any) {
     queryKey: [QUERY_KEYS.USERS],
     queryFn: () => fetchCurrentUser(),
   });
+  console.log("====================================");
+  console.log(userProfile);
+  console.log("====================================");
   return (
     <div className="mb-4 flex items-center gap-4 rounded-lg bg-green-200 px-4 py-2">
       <Image

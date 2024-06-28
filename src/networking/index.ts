@@ -21,7 +21,7 @@ const handleCheckToken = async () => {
   const token = cookie.get(COOKIE_KEYS.ACCESS_TOKEN);
   const expires_at = cookie.get(COOKIE_KEYS.EXPIRES_AT);
 
-  if (Date.now() > Number(expires_at) * 1000 || !token || !expires_at) {
+  if (Date.now() > Number(expires_at) || !token || !expires_at) {
     return await getRefreshToken();
   } else {
     return token;
