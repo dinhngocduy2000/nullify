@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import AuthProvider from "../Providers/authProvider";
-import Providers from "../Providers/provider";
+import "../globals.css";
 import { CookiesProvider } from "next-client-cookies/server";
 import SidebarComponent from "@/components/Sidebar";
+import AuthProvider from "@/Providers/authProvider";
+import Providers from "@/Providers/provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -25,11 +25,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider>
-          <Providers>
-            <CookiesProvider>{children}</CookiesProvider>
-          </Providers>
-        </AuthProvider>
+        <div className="box-border flex h-screen w-screen justify-center">
+          <div className="my-auto box-border flex h-[calc(100vh_-_16px)] w-[calc(100vw_-_16px)] gap-2">
+            <SidebarComponent />
+            <div className="bg-default h-full flex-1 rounded-lg">
+              {children}
+            </div>
+          </div>
+        </div>
       </body>
     </html>
   );

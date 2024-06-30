@@ -2,7 +2,7 @@
 import { signIn } from "next-auth/react";
 import React from "react";
 import Image from "next/image";
-import NullifyIcon from "../../library/assets/svgs/nullify-icon.svg";
+import NullifyIcon from "../../../library/assets/svgs/nullify-icon.svg";
 import PrimaryButton from "@/components/PrimaryButton";
 import { URL_ENUM } from "@/library/enum/url-enum";
 
