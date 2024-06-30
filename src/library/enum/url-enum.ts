@@ -9,4 +9,5 @@ export enum URL_ENUM {
   SEARCH = "/search",
   CONTENT_FEED = "/content-feed",
   USER = "/user",
+  DOWNLOAD = "/download",
 }

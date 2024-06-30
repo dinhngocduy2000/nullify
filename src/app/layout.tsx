@@ -4,6 +4,7 @@ import "./globals.css";
 import AuthProvider from "../Providers/authProvider";
 import Providers from "../Providers/provider";
 import { CookiesProvider } from "next-client-cookies/server";
+import SidebarComponent from "@/components/Sidebar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -24,13 +25,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex h-screen w-screen items-center justify-center bg-gradient-to-b from-indigo-700 via-indigo-900 to-slate-900">
-          <AuthProvider>
-            <Providers>
-              <CookiesProvider>{children}</CookiesProvider>
-            </Providers>
-          </AuthProvider>
-        </div>
+        <AuthProvider>
+          <Providers>
+            <CookiesProvider>
+              <div className="box-border flex h-screen w-screen justify-center">
+                <div className="my-auto box-border flex h-[calc(100vh_-_16px)] w-[calc(100vw_-_16px)] gap-2">
+                  <SidebarComponent />
+                  <div className="bg-default h-full flex-1 rounded-lg">
+                    {children}
+                  </div>
+                </div>
+              </div>
+            </CookiesProvider>
+          </Providers>
+        </AuthProvider>
       </body>
     </html>
   );
