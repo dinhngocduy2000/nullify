@@ -2,12 +2,13 @@
 import React from "react";
 import PrimaryButton from "../PrimaryButton";
 import { signOut } from "next-auth/react";
+import { URL_ENUM } from "@/library/enum/url-enum";
 
 type Props = {};
 
 const TestingIndex = (props: Props) => {
   const handleLogout = () => {
-    signOut({ callbackUrl: "/login" });
+    signOut({ callbackUrl: URL_ENUM.LOGIN });
   };
   return (
     <PrimaryButton

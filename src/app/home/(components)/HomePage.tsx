@@ -8,7 +8,7 @@ import React from "react";
 import ChildComponent from "./ChildComponent";
 
 type Props = {};
-export default function HomePage({ test }: any) {
+export default function TestHomePage({ test }: any) {
   const { data: userProfile } = useQuery({
     queryKey: [QUERY_KEYS.USERS],
     queryFn: () => fetchCurrentUser(),

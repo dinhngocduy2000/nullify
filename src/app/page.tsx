@@ -1,5 +1,4 @@
 import TestingIndex from "@/components/TestingLogout";
-import HomePage from "./(home)/HomePage";
 import { Suspense } from "react";
 import { fetchCurrentUser } from "@/networking/usersAPI";
 import {
@@ -8,6 +7,7 @@ import {
   dehydrate,
 } from "@tanstack/react-query";
 import { QUERY_KEYS } from "@/library/enum/query-keys";
+import TestHomePage from "./home/(components)/HomePage";
 
 export default async function Home() {
   const queryClient = new QueryClient();
@@ -20,7 +20,7 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
       <HydrationBoundary state={dehydrate(queryClient)}>
         <Suspense fallback="Loading...">
-          <HomePage />
+          <TestHomePage />
         </Suspense>
       </HydrationBoundary>
 
