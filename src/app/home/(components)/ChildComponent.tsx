@@ -8,7 +8,7 @@ type Props = {};
 
 const ChildComponent = (props: Props) => {
   const { data: userProfile } = useQuery({
-    queryKey: [QUERY_KEYS.USERS],
+    queryKey: [QUERY_KEYS.PROFILE],
     queryFn: () => fetchCurrentUser(),
   });
   return <div></div>;

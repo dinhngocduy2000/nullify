@@ -13,7 +13,7 @@ export default async function Home() {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: [QUERY_KEYS.USERS],
+    queryKey: [QUERY_KEYS.PROFILE],
     queryFn: () => fetchCurrentUser(),
   });
   return (

@@ -5,9 +5,11 @@ type Props = {};
 
 const SidebarComponent = (props: Props) => {
   return (
-    <div className="w-[20%] min-w-[250px] rounded-lg">
-      <NavigationComponent />
-    </div>
+    <>
+      <div className="w-[20%] min-w-[250px] rounded-lg">
+        <NavigationComponent />
+      </div>
+    </>
   );
 };
 

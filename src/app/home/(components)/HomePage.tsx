@@ -22,7 +22,7 @@ const imageLoader = ({
 };
 export default function TestHomePage({ test }: any) {
   const { data: userProfile } = useQuery({
-    queryKey: [QUERY_KEYS.USERS],
+    queryKey: [QUERY_KEYS.PROFILE],
     queryFn: () => fetchCurrentUser(),
   });
   console.log("====================================");

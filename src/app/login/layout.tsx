@@ -18,8 +18,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex h-screen w-screen items-center justify-center bg-gradient-to-b from-indigo-500 via-indigo-900 to-slate-900">
-      {children}
-    </div>
+    <html lang="en">
+      <body className={inter.className}>
+        <div className="flex h-screen w-screen items-center justify-center bg-gradient-to-b from-indigo-500 via-indigo-900 to-slate-900">
+          {children}
+        </div>
+      </body>
+    </html>
   );
 }
