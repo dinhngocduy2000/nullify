@@ -13,12 +13,12 @@ const NavigationComponent = ({}: Props) => {
   const pathName = usePathname();
 
   return (
-    <div className="bg-default rounded-lg py-4">
+    <div className="rounded-lg bg-default py-4">
       <Link
         href={URL_ENUM.HOMEPAGE}
         className={classNames(
           "mb-4 flex items-center hover:text-white hover:underline",
-          pathName === URL_ENUM.HOMEPAGE ? "text-white" : "text-[#b3b3b3]",
+          pathName === URL_ENUM.HOMEPAGE ? "text-white" : "text-default",
         )}
       >
         <HomeIcon width={20} height={20} className="mx-4" />
@@ -28,7 +28,7 @@ const NavigationComponent = ({}: Props) => {
         href={URL_ENUM.SEARCH}
         className={classNames(
           "flex items-center hover:text-white hover:underline",
-          pathName === URL_ENUM.SEARCH ? "text-white" : "text-[#b3b3b3]",
+          pathName === URL_ENUM.SEARCH ? "text-white" : "text-default",
         )}
       >
         <MagnifyingGlassIcon width={20} height={20} className="mx-4" />
