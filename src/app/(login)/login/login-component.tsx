@@ -10,19 +10,16 @@ type Props = {};
 
 const LoginComponent = (props: Props) => {
   const handleLogin = () => {
-    signIn("", { callbackUrl: URL_ENUM.HOMEPAGE });
+    return signIn("", { callbackUrl: URL_ENUM.HOMEPAGE });
   };
   return (
-    <form
-      action={() => handleLogin()}
-      className="flex flex-col items-center gap-2"
-    >
+    <div className="flex flex-col items-center gap-2">
       <Image src={NullifyIcon} alt="Nullify logo" />
       <p className="text-lg font-semibold">Welcome to Nullify!</p>
-      <PrimaryButton className="w-[200px] p-3" type="submit">
+      <PrimaryButton className="w-[200px] p-3" onClick={handleLogin}>
         Log in
       </PrimaryButton>
-    </form>
+    </div>
   );
 };
 
