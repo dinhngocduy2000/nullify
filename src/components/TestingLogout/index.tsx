@@ -8,13 +8,10 @@ type Props = {};
 
 const TestingIndex = (props: Props) => {
   const handleLogout = () => {
-    signOut({ callbackUrl: URL_ENUM.LOGIN });
+    return signOut({ callbackUrl: URL_ENUM.LOGIN });
   };
   return (
-    <PrimaryButton
-      className="w-[200px] px-4 py-3"
-      onClick={() => handleLogout()}
-    >
+    <PrimaryButton className="w-[200px] px-4 py-3" onClick={handleLogout}>
       Now please log out
     </PrimaryButton>
   );
