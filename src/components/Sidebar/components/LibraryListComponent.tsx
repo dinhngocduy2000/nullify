@@ -1,5 +1,5 @@
 import { URL_ENUM } from "@/library/enum/url-enum";
-import { fetchFollowedArtist } from "@/networking/usersAPI";
+import { fetchFollowedArtist, fetchUserTopItems } from "@/networking/usersAPI";
 import { PlusIcon } from "@heroicons/react/20/solid";
 import {
   InboxStackIcon,
@@ -13,12 +13,13 @@ type Props = {};
 
 const LibraryListComponent = async (props: Props) => {
   const followedArtists = await fetchFollowedArtist();
+  const topAlbums = await fetchUserTopItems("tracks");
   console.log("====================================");
-  console.log(followedArtists);
+  console.log(topAlbums);
   console.log("====================================");
   return (
     <div className="relative w-full flex-1 overflow-hidden rounded-lg bg-default pb-4 hover:overflow-auto">
-      <div className="sticky top-0 z-10 flex w-full items-center justify-between bg-default p-4">
+      <div className="sticky top-0 z-10 flex w-full items-center justify-between bg-default p-4 pr-2">
         <div className="flex items-center gap-4">
           <Square3Stack3DIcon width={20} height={20} className="text-default" />
           <p className="text-sm font-semibold text-default">Your Library</p>
@@ -40,9 +41,30 @@ const LibraryListComponent = async (props: Props) => {
               className="max-h-[50px] min-h-[50px] min-w-[50px] max-w-[50px] rounded-full"
             />
             <div>
-              <p className="opacity-90">{artist.name}</p>
-              <span className="text-sm capitalize text-default">
+              <p className="text-sm opacity-90">{artist.name}</p>
+              <span className="text-xs capitalize text-default">
                 {artist.type}
+              </span>
+            </div>
+          </Link>
+        ))}
+        {topAlbums.items.map((album) => (
+          <Link
+            href={URL_ENUM.ALBUMS + `/${album.id}`}
+            key={album.id}
+            className="flex w-full cursor-pointer items-center gap-4 rounded-lg p-2 hover:bg-[#282828]"
+          >
+            <Image
+              src={album.album.images[album.album.images.length - 1].url}
+              height={50}
+              width={50}
+              alt="Artist image"
+              className="max-h-[50px] min-h-[50px] min-w-[50px] max-w-[50px] rounded-full"
+            />
+            <div>
+              <p className="text-sm opacity-90">{album.name}</p>
+              <span className="text-xs capitalize text-default">
+                {album.album.type}
               </span>
             </div>
           </Link>

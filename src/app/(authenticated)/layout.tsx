@@ -11,9 +11,9 @@ export const metadata: Metadata = {
   title: "Nullify",
   description: "A music player based on Spotify!",
   icons: {
-    icon: "./icon.ico",
-    shortcut: "./icon.ico",
-    apple: "./apple-icon.png",
+    icon: "/icon.ico",
+    shortcut: "/icon.ico",
+    apple: "/apple-icon.png",
   },
 };
 

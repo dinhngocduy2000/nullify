@@ -35,6 +35,7 @@ body {
 @layer base {
   * {
     @apply box-border;
+    scrollbar-gutter: stable;
   }
 }
 ::-webkit-scrollbar {
