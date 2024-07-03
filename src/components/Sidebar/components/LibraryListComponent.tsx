@@ -73,7 +73,8 @@ const LibraryListComponent = async (props: Props) => {
             <div className="w-full truncate">
               <p className="truncate text-sm opacity-90">{album.name}</p>
               <span className="text-xs capitalize text-default">
-                {album.album.type}
+                {album.album.type} <span>*</span>
+                <span>{album.artists[0].name}</span>
               </span>
             </div>
           </Link>
