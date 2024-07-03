@@ -1,13 +1,9 @@
 import { URL_ENUM } from "@/library/enum/url-enum";
 import { fetchFollowedArtist, fetchUserTopItems } from "@/networking/usersAPI";
 import { PlusIcon } from "@heroicons/react/20/solid";
-import {
-  InboxStackIcon,
-  Square3Stack3DIcon,
-} from "@heroicons/react/24/outline";
-import Image from "next/image";
-import Link from "next/link";
+import { Square3Stack3DIcon } from "@heroicons/react/24/outline";
 import React from "react";
+import LinkItem from "./LinkItem";
 
 type Props = {};
 async function getFollowedArtists() {
@@ -37,47 +33,25 @@ const LibraryListComponent = async (props: Props) => {
       </div>
       <div className="flex-1 overflow-auto px-2">
         {followedArtists.artists.items.map((artist) => (
-          <Link
-            href={URL_ENUM.ARTIST + `/${artist.id}`}
+          <LinkItem
             key={artist.id}
-            className="flex w-full cursor-pointer items-center gap-4 truncate rounded-lg p-2 hover:bg-[#282828]"
-          >
-            <Image
-              src={artist.images[artist.images.length - 1].url}
-              height={50}
-              width={50}
-              alt="Artist image"
-              className="max-h-[50px] min-h-[50px] min-w-[50px] max-w-[50px] rounded-full"
-            />
-            <div className="w-full truncate">
-              <p className="truncate text-sm opacity-90">{artist.name}</p>
-              <span className="text-xs capitalize text-default">
-                {artist.type}
-              </span>
-            </div>
-          </Link>
+            id={artist.id}
+            href={URL_ENUM.ARTIST + `/${artist.id}`}
+            src={artist.images[artist.images.length - 1].url}
+            name={artist.name}
+            type={artist.type}
+          />
         ))}
         {topAlbums.items.map((album) => (
-          <Link
-            href={URL_ENUM.ALBUMS + `/${album.id}`}
+          <LinkItem
             key={album.id}
-            className="flex w-full cursor-pointer items-center gap-4 truncate rounded-lg p-2 hover:bg-[#282828]"
-          >
-            <Image
-              src={album.album.images[album.album.images.length - 1].url}
-              height={50}
-              width={50}
-              alt="Artist image"
-              className="max-h-[50px] min-h-[50px] min-w-[50px] max-w-[50px] rounded-full"
-            />
-            <div className="w-full truncate">
-              <p className="truncate text-sm opacity-90">{album.name}</p>
-              <span className="text-xs capitalize text-default">
-                {album.album.type} <span>*</span>
-                <span>{album.artists[0].name}</span>
-              </span>
-            </div>
-          </Link>
+            id={album.id}
+            href={URL_ENUM.ALBUMS + `/${album.id}`}
+            src={album.album.images[album.album.images.length - 1].url}
+            name={album.name}
+            type={album.album.type}
+            artist={album.artists[0].name}
+          />
         ))}
       </div>
     </div>
