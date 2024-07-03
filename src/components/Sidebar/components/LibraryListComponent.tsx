@@ -10,10 +10,19 @@ import Link from "next/link";
 import React from "react";
 
 type Props = {};
+async function getFollowedArtists() {
+  return await fetchFollowedArtist();
+}
+
+async function getTopAlbums() {
+  return await fetchUserTopItems("tracks");
+}
 
 const LibraryListComponent = async (props: Props) => {
-  const followedArtists = await fetchFollowedArtist();
-  const topAlbums = await fetchUserTopItems("tracks");
+  const [followedArtists, topAlbums] = await Promise.all([
+    getFollowedArtists(),
+    getTopAlbums(),
+  ]);
   console.log("====================================");
   console.log(topAlbums);
   console.log("====================================");
