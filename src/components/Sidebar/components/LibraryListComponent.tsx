@@ -40,7 +40,7 @@ const LibraryListComponent = async (props: Props) => {
           <Link
             href={URL_ENUM.ARTIST + `/${artist.id}`}
             key={artist.id}
-            className="flex w-full cursor-pointer items-center gap-4 rounded-lg p-2 hover:bg-[#282828]"
+            className="flex w-full cursor-pointer items-center gap-4 truncate rounded-lg p-2 hover:bg-[#282828]"
           >
             <Image
               src={artist.images[artist.images.length - 1].url}
@@ -49,8 +49,8 @@ const LibraryListComponent = async (props: Props) => {
               alt="Artist image"
               className="max-h-[50px] min-h-[50px] min-w-[50px] max-w-[50px] rounded-full"
             />
-            <div>
-              <p className="text-sm opacity-90">{artist.name}</p>
+            <div className="w-full truncate">
+              <p className="truncate text-sm opacity-90">{artist.name}</p>
               <span className="text-xs capitalize text-default">
                 {artist.type}
               </span>
@@ -61,7 +61,7 @@ const LibraryListComponent = async (props: Props) => {
           <Link
             href={URL_ENUM.ALBUMS + `/${album.id}`}
             key={album.id}
-            className="flex w-full cursor-pointer items-center gap-4 rounded-lg p-2 hover:bg-[#282828]"
+            className="flex w-full cursor-pointer items-center gap-4 truncate rounded-lg p-2 hover:bg-[#282828]"
           >
             <Image
               src={album.album.images[album.album.images.length - 1].url}
@@ -70,8 +70,8 @@ const LibraryListComponent = async (props: Props) => {
               alt="Artist image"
               className="max-h-[50px] min-h-[50px] min-w-[50px] max-w-[50px] rounded-full"
             />
-            <div>
-              <p className="text-sm opacity-90">{album.name}</p>
+            <div className="w-full truncate">
+              <p className="truncate text-sm opacity-90">{album.name}</p>
               <span className="text-xs capitalize text-default">
                 {album.album.type}
               </span>
