@@ -21,6 +21,7 @@ const config: Config = {
       },
       backgroundColor: {
         default: "#121212",
+        scrollbar: "#656465",
       },
     },
     fontFamily: {

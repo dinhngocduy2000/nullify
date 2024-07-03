@@ -37,3 +37,19 @@ body {
     @apply box-border;
   }
 }
+::-webkit-scrollbar {
+  /* Customize the scrollbar width */
+  width: 8px !important;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+  /* Customize the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #656465;
+  width: 3px !important;
+  border-radius: 8px;
+  /* Customize the scrollbar thumb */
+}
