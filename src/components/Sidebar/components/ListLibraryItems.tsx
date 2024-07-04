@@ -17,7 +17,9 @@ const ListLibraryItems = (props: Props) => {
     queryKey: [QUERY_KEYS.TOP_ALBUMS],
     queryFn: () => fetchUserTopItems("tracks"),
   });
-
+  console.log("====================================");
+  console.log(topAlbums);
+  console.log("====================================");
   return (
     <div className="flex-1 overflow-auto px-2">
       {followedArtists?.artists.items.map((artist) => (
@@ -33,8 +35,8 @@ const ListLibraryItems = (props: Props) => {
       {topAlbums?.items.map((album) => (
         <LinkItem
           key={album.id}
-          id={album.id}
-          href={URL_ENUM.ALBUMS + `/${album.id}`}
+          id={album.album.id}
+          href={URL_ENUM.ALBUMS + `/${album.album.id}`}
           src={album.album.images[album.album.images.length - 1].url}
           name={album.name}
           type={album.album.type}

@@ -30,6 +30,34 @@ export interface Item {
   uri: string;
 }
 
+//Get Artist
+export interface ArtistDetails {
+  external_urls: Externalurls;
+  followers: ArtistFollowers;
+  genres: string[];
+  href: string;
+  id: string;
+  images: Image[];
+  name: string;
+  popularity: number;
+  type: string;
+  uri: string;
+}
+
+export interface Image {
+  url: string;
+  height: number;
+  width: number;
+}
+
+export interface ArtistFollowers {
+  href: null;
+  total: number;
+}
+
+export interface Externalurls {
+  spotify: string;
+}
 // export interface Image {
 //   height: number;
 //   url: string;
