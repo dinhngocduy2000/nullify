@@ -24,9 +24,7 @@ export async function generateMetadata(
 
   return {
     title: `Nullify - ${artistDetails.name}`,
-    openGraph: {
-      images: ["/some-specific-page-image.jpg", ...previousImages],
-    },
+    openGraph: {},
     description: `Details about ${artistDetails.name}`,
   };
 }

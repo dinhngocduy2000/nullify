@@ -7,7 +7,13 @@ import React from "react";
 import LinkItem from "./LinkItem";
 
 type Props = {};
-
+type FilteredAlbum = {
+  id: string;
+  name: string;
+  type: string;
+  artist: string;
+  src: string;
+};
 const ListLibraryItems = (props: Props) => {
   const { data: followedArtists } = useQuery({
     queryKey: [QUERY_KEYS.FOLLOWED_ARTIST],
@@ -17,9 +23,22 @@ const ListLibraryItems = (props: Props) => {
     queryKey: [QUERY_KEYS.TOP_ALBUMS],
     queryFn: () => fetchUserTopItems("tracks"),
   });
-  console.log("====================================");
-  console.log(topAlbums);
-  console.log("====================================");
+
+  const albumsList: FilteredAlbum[] =
+    topAlbums?.items.map((album) => {
+      return {
+        id: album.album.id,
+        name: album.album.name,
+        type: album.album.type,
+        artist: album.artists[0].name,
+        src: album.album.images[album.album.images.length - 1].url,
+      };
+    }) ?? [];
+
+  const uniquedFilteredAlbum: FilteredAlbum[] = [
+    ...new Set(albumsList?.map((item) => JSON.stringify(item))),
+  ].map((item) => JSON.parse(item));
+
   return (
     <div className="flex-1 overflow-auto px-2">
       {followedArtists?.artists.items.map((artist) => (
@@ -32,15 +51,15 @@ const ListLibraryItems = (props: Props) => {
           type={artist.type}
         />
       ))}
-      {topAlbums?.items.map((album) => (
+      {uniquedFilteredAlbum.map((album) => (
         <LinkItem
           key={album.id}
-          id={album.album.id}
-          href={URL_ENUM.ALBUMS + `/${album.album.id}`}
-          src={album.album.images[album.album.images.length - 1].url}
+          id={album.id}
+          href={URL_ENUM.ALBUMS + `/${album.id}`}
+          src={album.src}
           name={album.name}
-          type={album.album.type}
-          artist={album.artists[0].name}
+          type={album.type}
+          artist={album.name}
         />
       ))}
     </div>

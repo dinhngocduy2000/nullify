@@ -17,6 +17,7 @@ type Props = {
 
 const LinkItem = ({ href, src, name, type, artist, id }: Props) => {
   const pathName = usePathname();
+
   return (
     <Link
       href={href}

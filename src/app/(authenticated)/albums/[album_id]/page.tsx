@@ -22,9 +22,7 @@ export async function generateMetadata(
 
   return {
     title: `Nullify - ${albumDetails.name}`,
-    openGraph: {
-      images: ["/some-specific-page-image.jpg", ...previousImages],
-    },
+    openGraph: {},
     description: `Album ${albumDetails.name} by ${albumDetails.artists[0].name}`,
   };
 }
