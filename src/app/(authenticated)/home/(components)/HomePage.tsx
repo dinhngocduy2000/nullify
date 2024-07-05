@@ -4,9 +4,10 @@ import { QUERY_KEYS } from "@/library/enum/query-keys";
 import { fetchCurrentUser } from "@/networking/usersAPI";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import ChildComponent from "./ChildComponent";
 import LoadingSuspenseComponent from "@/components/LoadingSuspenseComponent";
+import { getNewReleases } from "@/networking/AlbumApi";
 
 type Props = {};
 const imageLoader = ({
@@ -25,6 +26,9 @@ export default function TestHomePage({ test }: any) {
     queryKey: [QUERY_KEYS.PROFILE],
     queryFn: () => fetchCurrentUser(),
   });
+
+  //
+
   console.log("====================================");
   console.log(userProfile);
   console.log("====================================");

@@ -40,7 +40,7 @@ const ListLibraryItems = (props: Props) => {
   ].map((item) => JSON.parse(item));
 
   return (
-    <div className="flex-1 overflow-auto px-2">
+    <div className="flex-1 overflow-auto px-2 pr-0">
       {followedArtists?.artists.items.map((artist) => (
         <LinkItem
           key={artist.id}
