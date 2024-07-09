@@ -2,6 +2,7 @@ import TestingIndex from "@/components/TestingLogout";
 import { Suspense } from "react";
 import NewReleasesComponent from "./home/(components)/NewReleases";
 import NewReleasesLoading from "./home/(components)/NewReleases/loading";
+import Link from "next/link";
 
 export default async function Home() {
   // const queryClient = new QueryClient();
@@ -12,13 +13,10 @@ export default async function Home() {
   // });
 
   return (
-    <main className="flex h-full flex-col p-4">
-      <>
-        <p className="mb-2 text-xl font-semibold">New Releases Albums</p>
-        <Suspense fallback={<NewReleasesLoading />}>
-          <NewReleasesComponent />
-        </Suspense>
-      </>
+    <div className="flex h-full w-full flex-1 flex-col p-4">
+      <Suspense fallback={<NewReleasesLoading />}>
+        <NewReleasesComponent />
+      </Suspense>
       {/* <HydrationBoundary state={dehydrate(queryClient)}>
         <Suspense fallback="Loading...">
           <TestHomePage />
@@ -26,6 +24,6 @@ export default async function Home() {
       </HydrationBoundary> */}
 
       <TestingIndex />
-    </main>
+    </div>
   );
 }

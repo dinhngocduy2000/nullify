@@ -41,6 +41,7 @@ body {
 ::-webkit-scrollbar {
   /* Customize the scrollbar width */
   width: 8px !important;
+  height: 8px;
   background-color: transparent;
 }
 
@@ -52,5 +53,6 @@ body {
   background-color: #656465;
   width: 3px !important;
   border-radius: 8px;
+
   /* Customize the scrollbar thumb */
 }
