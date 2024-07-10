@@ -41,7 +41,7 @@ body {
 ::-webkit-scrollbar {
   /* Customize the scrollbar width */
   width: 8px !important;
-  height: 8px;
+  height: 5px;
   background-color: transparent;
 }
 
