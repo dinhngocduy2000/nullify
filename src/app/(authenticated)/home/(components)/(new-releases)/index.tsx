@@ -2,16 +2,12 @@ import ListSpotifyItems from "@/components/ListSpotifyItems";
 import NoDataComponent from "@/components/NoData";
 import SpotifyItemComponent from "@/components/SpotifyItem";
 import { getNewReleases } from "@/networking/AlbumApi";
-import Link from "next/link";
 import React from "react";
 
 type Props = {};
 
 const NewReleasesComponent = async (props: Props) => {
   const newReleases = await getNewReleases(20, 0);
-  console.log("====================================");
-  console.log(newReleases?.albums?.items);
-  console.log("====================================");
 
   return (
     <ListSpotifyItems title={"New Release Albums"} showAllUrl={"#"}>

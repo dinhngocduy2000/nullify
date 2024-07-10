@@ -1,9 +1,9 @@
-import SpotifyItemSkeletonComponent from "@/components/SpotifyItem/loading";
 import React from "react";
+import SpotifyItemSkeletonComponent from "../SpotifyItem/loading";
 
 type Props = {};
 
-const NewReleasesLoading = (props: Props) => {
+const ListSpotifyItemsLoading = (props: Props) => {
   return (
     <div className="h-[300px] w-full">
       <div className="flex w-full gap-4 overflow-x-auto">
@@ -16,4 +16,4 @@ const NewReleasesLoading = (props: Props) => {
   );
 };
 
-export default NewReleasesLoading;
+export default ListSpotifyItemsLoading;

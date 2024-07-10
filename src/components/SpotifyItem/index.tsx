@@ -24,7 +24,7 @@ const SpotifyItemComponent = ({
   console.log("====================================");
   return (
     <Link
-      className="rounded-lg p-4 first:pl-0 last:pr-0 hover:bg-[#2b2b2b]"
+      className="max-w-[182px] rounded-lg p-4 hover:bg-[#2b2b2b]"
       href={href}
     >
       <Image
@@ -34,8 +34,10 @@ const SpotifyItemComponent = ({
         className={`min-h-[150px] min-w-[150px]`}
         alt="Spotify item"
       />
-      <p className="my-2 text-sm">{title}</p>
-      <p className="text-xs text-gray-400">{subTitle}</p>
+      <p className="my-2 line-clamp-1 text-sm">{title}</p>
+      <p className="line-clamp-2 whitespace-pre-wrap text-xs text-gray-400">
+        {subTitle}
+      </p>
     </Link>
   );
 };
