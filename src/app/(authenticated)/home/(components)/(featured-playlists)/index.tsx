@@ -9,9 +9,7 @@ type Props = {};
 
 const FeaturedPlaylistsComponent = async (props: Props) => {
   const featuredPlaylists = await getFeaturedPlaylists(10, 0);
-  console.log("====================================");
-  console.log(featuredPlaylists);
-  console.log("====================================");
+
   return (
     <ListSpotifyItems title={featuredPlaylists.message} showAllUrl={"#"}>
       {!featuredPlaylists?.playlists ? (
@@ -19,6 +17,7 @@ const FeaturedPlaylistsComponent = async (props: Props) => {
       ) : (
         featuredPlaylists.playlists.items.map((playlist) => (
           <SpotifyItemComponent
+            key={playlist.id}
             href={URL_ENUM.ALBUMS + `/${playlist.id}`}
             src={playlist.images[0].url}
             title={playlist.name}

@@ -23,15 +23,12 @@ const SpotifyItemComponent = ({
   console.log(href);
   console.log("====================================");
   return (
-    <Link
-      className="max-w-[182px] rounded-lg p-4 hover:bg-[#2b2b2b]"
-      href={href}
-    >
+    <Link className="rounded-lg p-4 hover:bg-[#2b2b2b]" href={href}>
       <Image
         src={src}
-        width={width ?? 150}
-        height={height ?? 150}
-        className={`min-h-[150px] min-w-[150px]`}
+        width={width ?? 180}
+        height={height ?? 180}
+        className={`min-h-[180px] min-w-[180px]`}
         alt="Spotify item"
       />
       <p className="my-2 line-clamp-1 text-sm">{title}</p>
