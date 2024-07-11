@@ -11,7 +11,7 @@ const ListSpotifyItems = ({ children, title, showAllUrl }: Props) => {
   return (
     <div className="max-w-full">
       <div className="flex w-full justify-between">
-        <p className="mb-2 text-xl font-semibold">{title}</p>
+        <p className="mb- ml-4 text-xl font-semibold">{title}</p>
         <Link
           href={showAllUrl}
           className="text-sm font-semibold text-gray-400 hover:underline"

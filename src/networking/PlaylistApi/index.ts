@@ -2,6 +2,7 @@ import { FollowPlaylistParams } from "@/library/interface/Playlists/playlists";
 import { fetchDelete, fetchGet, fetchPut } from "..";
 import { PLAYLIST_URL } from "../api-url/Playlists";
 import { TrendingPlaylistsObject } from "@/library/interface/Playlists/trendings";
+import { CategoryPlaylistsRes } from "@/library/interface/Playlists/categories-playlist";
 
 export const followPlaylist = (data: FollowPlaylistParams): Promise<any> => {
   return fetchPut(
@@ -27,4 +28,10 @@ export const getFeaturedPlaylists = (
         offset: offset.toString(),
       }),
   );
+};
+
+export const getCategoryPlaylist = async (
+  id: string,
+): Promise<CategoryPlaylistsRes> => {
+  return fetchGet(PLAYLIST_URL.CATEGORY_PLAYLIST.replace("${category_id}", id));
 };
