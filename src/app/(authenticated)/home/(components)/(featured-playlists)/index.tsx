@@ -8,7 +8,7 @@ import React from "react";
 type Props = {};
 
 const FeaturedPlaylistsComponent = async (props: Props) => {
-  const featuredPlaylists = await getFeaturedPlaylists(10, 0);
+  const featuredPlaylists = await getFeaturedPlaylists(5, 0);
 
   return (
     <ListSpotifyItems title={featuredPlaylists.message} showAllUrl={"#"}>

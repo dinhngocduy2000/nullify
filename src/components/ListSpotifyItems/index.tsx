@@ -19,7 +19,7 @@ const ListSpotifyItems = ({ children, title, showAllUrl }: Props) => {
           Show all
         </Link>
       </div>
-      <div className="flex max-w-full gap-4 overflow-x-hidden pb-4 hover:overflow-x-auto">
+      <div className="flex max-w-full justify-between gap-4 overflow-x-hidden pb-4 hover:overflow-x-auto">
         {children}
       </div>
     </div>

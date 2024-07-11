@@ -7,7 +7,7 @@ import React from "react";
 type Props = {};
 
 const NewReleasesComponent = async (props: Props) => {
-  const newReleases = await getNewReleases(20, 0);
+  const newReleases = await getNewReleases(5, 0);
 
   return (
     <ListSpotifyItems title={"New Release Albums"} showAllUrl={"#"}>
