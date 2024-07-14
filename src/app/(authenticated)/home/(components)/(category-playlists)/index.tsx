@@ -8,7 +8,6 @@ type Props = {};
 
 const CategoriesPlaylist = async (props: Props) => {
   const categories = await getListBrowseCategories();
-  console.log(categories);
   return (
     <div className="w-full">
       {categories.categories.items.map((category) => (

@@ -25,7 +25,7 @@ const ListLibraryItems = (props: Props) => {
   });
 
   const albumsList: FilteredAlbum[] =
-    topAlbums?.items.map((album) => {
+    topAlbums?.items?.map((album) => {
       return {
         id: album.album.id,
         name: album.album.name,

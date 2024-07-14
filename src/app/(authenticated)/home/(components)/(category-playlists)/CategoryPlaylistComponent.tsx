@@ -10,7 +10,6 @@ type Props = {
 
 const CategoryPlaylistComponent = async ({ category_id }: Props) => {
   const category_playlists = await getCategoryPlaylist(category_id);
-  console.log(category_playlists);
   return (
     <div className="w-full">
       <ListSpotifyItems title={category_playlists.message} showAllUrl={"#"}>

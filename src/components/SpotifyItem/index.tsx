@@ -29,7 +29,7 @@ const SpotifyItemComponent = ({
         alt="Spotify item"
       />
       <p className="my-2 line-clamp-1 text-sm">{title}</p>
-      <p className="line-clamp-2 whitespace-pre-wrap text-xs text-gray-400">
+      <p className="line-clamp-2 max-w-[250px] whitespace-pre-wrap text-xs text-gray-400">
         {subTitle}
       </p>
     </Link>
