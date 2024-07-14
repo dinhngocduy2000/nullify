@@ -10,7 +10,7 @@ const CategoriesPlaylist = async (props: Props) => {
   const categories = await getListBrowseCategories();
   return (
     <div className="w-full">
-      {categories.categories.items.map((category) => (
+      {categories?.categories?.items?.map((category) => (
         <Suspense key={category.id} fallback={<ListSpotifyItemsLoading />}>
           <CategoryPlaylistComponent category_id={category.id} />
         </Suspense>

@@ -5,22 +5,25 @@ import { getCategoryPlaylist } from "@/networking/PlaylistApi";
 import React from "react";
 
 type Props = {
-  category_id: string;
+  params: {
+    category_id: string;
+  };
 };
 
-const CategoryPlaylistComponent = async ({ category_id }: Props) => {
-  const category_playlists = await getCategoryPlaylist(category_id, {
-    limit: "5",
+const CategoryPlaylistsPage = async ({ params }: Props) => {
+  const { category_id } = params;
+  const categoryPlaylists = await getCategoryPlaylist(category_id, {
+    limit: "30",
     offset: "0",
   });
   return (
-    <div className="w-full">
+    <div className="flex h-full w-full flex-1 flex-col gap-2 p-4">
       <ListSpotifyItems
-        title={category_playlists.message}
-        showAllUrl={category_id}
-        showAll
+        overflowDirection="VERTICAL"
+        title={categoryPlaylists.message}
+        showAllUrl={"#"}
       >
-        {category_playlists?.playlists?.items?.map((playlist) => (
+        {categoryPlaylists?.playlists?.items?.map((playlist) => (
           <SpotifyItemComponent
             key={playlist.id}
             href={`${URL_ENUM.PLAYLISTS}/${playlist.id}`}
@@ -34,4 +37,4 @@ const CategoryPlaylistComponent = async ({ category_id }: Props) => {
   );
 };
 
-export default CategoryPlaylistComponent;
+export default CategoryPlaylistsPage;

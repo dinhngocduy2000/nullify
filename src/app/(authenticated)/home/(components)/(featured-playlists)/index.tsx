@@ -15,7 +15,7 @@ const FeaturedPlaylistsComponent = async (props: Props) => {
       {!featuredPlaylists?.playlists ? (
         <NoDataComponent />
       ) : (
-        featuredPlaylists.playlists.items.map((playlist) => (
+        featuredPlaylists?.playlists?.items?.map((playlist) => (
           <SpotifyItemComponent
             key={playlist.id}
             href={URL_ENUM.ALBUMS + `/${playlist.id}`}

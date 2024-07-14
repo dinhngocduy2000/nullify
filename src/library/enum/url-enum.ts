@@ -10,4 +10,5 @@ export enum URL_ENUM {
   CONTENT_FEED = "/content-feed",
   USER = "/user",
   DOWNLOAD = "/download",
+  SECTIONS = "/sections",
 }
