@@ -3,6 +3,7 @@ import { fetchDelete, fetchGet, fetchPut } from "..";
 import { PLAYLIST_URL } from "../api-url/Playlists";
 import { TrendingPlaylistsObject } from "@/library/interface/Playlists/trendings";
 import { CategoryPlaylistsRes } from "@/library/interface/Playlists/categories-playlist";
+import { PageOffset } from "@/library/interface/Commons";
 
 export const followPlaylist = (data: FollowPlaylistParams): Promise<any> => {
   return fetchPut(
@@ -32,6 +33,14 @@ export const getFeaturedPlaylists = (
 
 export const getCategoryPlaylist = async (
   id: string,
+  data: PageOffset,
 ): Promise<CategoryPlaylistsRes> => {
-  return fetchGet(PLAYLIST_URL.CATEGORY_PLAYLIST.replace("${category_id}", id));
+  return fetchGet(
+    PLAYLIST_URL.CATEGORY_PLAYLIST.replace("${category_id}", id) +
+      "?" +
+      new URLSearchParams({
+        limit: data.limit,
+        offset: data.offset,
+      }),
+  );
 };

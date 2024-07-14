@@ -9,9 +9,9 @@ type Props = {
 
 const ListSpotifyItems = ({ children, title, showAllUrl }: Props) => {
   return (
-    <div className="my-2 max-w-full">
-      <div className="mb-2 flex w-full justify-between">
-        <p className="mb- ml-4 text-xl font-semibold">{title}</p>
+    <div className="mb-2 max-w-full py-2">
+      <div className="flex w-full justify-between">
+        <p className="mb-2 ml-4 text-xl font-semibold">{title}</p>
         <Link
           href={showAllUrl}
           className="text-sm font-semibold text-gray-400 hover:underline"

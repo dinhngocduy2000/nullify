@@ -6,7 +6,7 @@ type Props = {};
 const ListSpotifyItemsLoading = (props: Props) => {
   return (
     <div className="my-2 h-[300px] w-full">
-      <div className="flex w-full gap-4 overflow-x-auto">
+      <div className="flex w-full gap-4 overflow-hidden">
         <SpotifyItemSkeletonComponent />
         <SpotifyItemSkeletonComponent />
         <SpotifyItemSkeletonComponent />
