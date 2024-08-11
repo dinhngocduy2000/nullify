@@ -1,12 +1,11 @@
 import { COOKIE_KEYS } from "@/library/enum/cookie-keys";
-import { URL_ENUM } from "@/library/enum/url-enum";
 import { REFRESH_TOKEN_INTERFACE } from "@/library/interface/auth/refresh-token";
 import { getCookies } from "next-client-cookies/server";
-import { redirect } from "next/navigation";
 
 export const checkTokenExpiration = (response: Response): void => {
   if (response.status === 401 || response.status === 403) {
-    return redirect(URL_ENUM.LOGIN);
+    console.log("UNAUTHORIZED API: ", response.url);
+    console.log(response);
   }
 };
 const BASE_URL = process.env.BASE_URL;
@@ -53,7 +52,7 @@ export const getRefreshToken = async (): Promise<string> => {
   return response.access_token;
 };
 
-export const fetchGet = async <T>(url: string, params?: any): Promise<T> => {
+export const fetchGet = async <T>(url: string, params?: any) => {
   const token = await handleCheckToken();
 
   console.log(`CHECKING FETCH GET TOKEN: ${token}`);
@@ -75,8 +74,7 @@ export const fetchGet = async <T>(url: string, params?: any): Promise<T> => {
     console.log("====================================");
     return jsonRes;
   } catch (error) {
-    console.log("Fetch GET Error:", (error as Error).message);
-    throw error;
+    console.log("Fetch GET Error:", error);
   }
 };
 export const fetchDelete = async <T>(url: string, body?: any): Promise<T> => {

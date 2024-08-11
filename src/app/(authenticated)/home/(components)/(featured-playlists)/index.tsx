@@ -9,7 +9,7 @@ type Props = {};
 
 const FeaturedPlaylistsComponent = async (props: Props) => {
   const featuredPlaylists = await getFeaturedPlaylists(5, 0);
-
+  if (!featuredPlaylists) return <NoDataComponent />;
   return (
     <ListSpotifyItems title={featuredPlaylists.message} showAllUrl={"#"}>
       {!featuredPlaylists?.playlists ? (

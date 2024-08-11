@@ -8,7 +8,7 @@ type Props = {};
 
 const NewReleasesComponent = async (props: Props) => {
   const newReleases = await getNewReleases(5, 0);
-
+  if (!newReleases) return <NoDataComponent />;
   return (
     <ListSpotifyItems title={"New Release Albums"} showAllUrl={"#"}>
       {!newReleases.albums ? (

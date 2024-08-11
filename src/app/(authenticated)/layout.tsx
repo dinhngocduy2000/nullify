@@ -25,14 +25,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="box-border flex h-screen w-screen justify-center">
-          <div className="my-auto box-border flex h-[calc(100vh_-_16px)] w-[calc(100vw_-_16px)] gap-2">
+        <section className="box-border flex h-screen w-screen justify-center">
+          <section className="my-auto box-border flex h-[calc(100vh_-_16px)] w-[calc(100vw_-_16px)] gap-2">
             <SidebarComponent />
-            <div className="flex h-full flex-1 overflow-auto rounded-lg bg-default">
+            <section className="flex h-full flex-1 overflow-auto rounded-lg bg-default">
               {children}
-            </div>
-          </div>
-        </div>
+            </section>
+          </section>
+        </section>
       </body>
     </html>
   );

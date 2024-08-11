@@ -20,7 +20,7 @@ export const unfollowPlaylist = (data: FollowPlaylistParams): Promise<any> => {
 export const getFeaturedPlaylists = (
   limit: number,
   offset: number,
-): Promise<TrendingPlaylistsObject> => {
+): Promise<TrendingPlaylistsObject | undefined> => {
   return fetchGet(
     PLAYLIST_URL.FEATURE_PLAYLISTS +
       "?" +
@@ -34,7 +34,7 @@ export const getFeaturedPlaylists = (
 export const getCategoryPlaylist = async (
   id: string,
   data: PageOffset,
-): Promise<CategoryPlaylistsRes> => {
+): Promise<CategoryPlaylistsRes | undefined> => {
   return fetchGet(
     PLAYLIST_URL.CATEGORY_PLAYLIST.replace("${category_id}", id) +
       "?" +

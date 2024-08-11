@@ -1,4 +1,5 @@
 import ListSpotifyItems from "@/components/ListSpotifyItems";
+import NoDataComponent from "@/components/NoData";
 import SpotifyItemComponent from "@/components/SpotifyItem";
 import { URL_ENUM } from "@/library/enum/url-enum";
 import { getCategoryPlaylist } from "@/networking/PlaylistApi";
@@ -13,6 +14,9 @@ const CategoryPlaylistComponent = async ({ category_id }: Props) => {
     limit: "5",
     offset: "0",
   });
+  if (!category_playlists) {
+    return <NoDataComponent />;
+  }
   return (
     <div className="w-full">
       <ListSpotifyItems
