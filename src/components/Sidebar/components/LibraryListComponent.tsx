@@ -32,7 +32,7 @@ const LibraryListComponent = async (props: Props) => {
   ]);
 
   return (
-    <div className="relative w-full flex-1 overflow-hidden rounded-lg bg-default pb-4 hover:overflow-auto">
+    <section className="relative w-full flex-1 overflow-hidden rounded-lg bg-default pb-4 hover:overflow-auto">
       <div className="sticky top-0 z-10 flex w-full items-center justify-between bg-default p-4 pr-2">
         <div className="flex items-center gap-4">
           <Square3Stack3DIcon width={20} height={20} className="text-default" />
@@ -43,7 +43,7 @@ const LibraryListComponent = async (props: Props) => {
       <HydrationBoundary state={dehydrate(queryClient)}>
         <ListLibraryItems />
       </HydrationBoundary>
-    </div>
+    </section>
   );
 };
 

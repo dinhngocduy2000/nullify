@@ -6,32 +6,13 @@ import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import React, { useEffect } from "react";
 import ChildComponent from "./ChildComponent";
-import LoadingSuspenseComponent from "@/components/LoadingSuspenseComponent";
-import { getNewReleases } from "@/networking/AlbumApi";
 
-type Props = {};
-const imageLoader = ({
-  src,
-  width,
-  quality,
-}: {
-  src: string;
-  width: number;
-  quality?: number;
-}) => {
-  return `https://example.com/${src}?w=${width}&q=${quality || 100}`;
-};
 export default function TestHomePage({ test }: any) {
   const { data: userProfile } = useQuery({
     queryKey: [QUERY_KEYS.PROFILE],
     queryFn: () => fetchCurrentUser(),
   });
 
-  //
-
-  console.log("====================================");
-  console.log(userProfile);
-  console.log("====================================");
   return (
     <div className="mb-4 flex items-center gap-4 rounded-lg bg-green-200 px-4 py-2">
       <Image

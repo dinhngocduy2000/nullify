@@ -13,7 +13,7 @@ const NavigationComponent = ({}: Props) => {
   const pathName = usePathname();
 
   return (
-    <div className="rounded-lg bg-default py-4">
+    <section className="rounded-lg bg-default py-4">
       <Link
         href={URL_ENUM.HOMEPAGE}
         className={classNames(
@@ -34,7 +34,7 @@ const NavigationComponent = ({}: Props) => {
         <MagnifyingGlassIcon width={20} height={20} className="mx-4" />
         <p className={classNames("mt-1 text-sm font-semibold")}>Search</p>
       </Link>
-    </div>
+    </section>
   );
 };
 

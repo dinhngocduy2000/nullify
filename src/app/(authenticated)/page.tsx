@@ -10,7 +10,7 @@ export default async function Home() {
   //   queryFn: () => fetchCurrentUser(),
   // });
   return (
-    <div className="flex h-full w-full flex-1 flex-col gap-2 p-4">
+    <main className="flex h-full w-full flex-1 flex-col gap-2 p-4">
       <Suspense fallback={<ListSpotifyItemsLoading />}>
         <NewReleasesComponent />
       </Suspense>
@@ -27,6 +27,6 @@ export default async function Home() {
       </HydrationBoundary> */}
 
       {/* <TestingIndex /> */}
-    </div>
+    </main>
   );
 }

@@ -20,9 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <section className="flex h-screen w-screen items-center justify-center bg-gradient-to-b from-indigo-500 via-indigo-900 to-slate-900">
+        <main className="flex h-screen w-screen items-center justify-center bg-gradient-to-b from-indigo-500 via-indigo-900 to-slate-900">
           {children}
-        </section>
+        </main>
       </body>
     </html>
   );

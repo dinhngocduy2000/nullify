@@ -30,7 +30,7 @@ const ListLibraryItems = (props: Props) => {
         id: album.album.id,
         name: album.album.name,
         type: album.album.type,
-        artist: album.artists[0].name,
+        artist: album?.artists[0]?.name,
         src: album.album.images[album.album.images.length - 1].url,
       };
     }) ?? [];

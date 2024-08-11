@@ -19,7 +19,7 @@ const Error = ({
     pathname === URL_ENUM.HOMEPAGE && window.location.reload();
   };
   return (
-    <div className="flex h-screen w-screen flex-col items-center justify-center gap-4">
+    <main className="flex h-screen w-screen flex-col items-center justify-center gap-4">
       <p>Something went wrong!</p>
       <Link
         onClick={() => handleReload()}
@@ -28,7 +28,7 @@ const Error = ({
       >
         Go to Home!
       </Link>
-    </div>
+    </main>
   );
 };
 
