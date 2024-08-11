@@ -20,7 +20,7 @@ const CategoryPlaylistsPage = async ({ params }: Props) => {
     <div className="flex h-full w-full flex-1 flex-col gap-2 p-4">
       <ListSpotifyItems
         overflowDirection="VERTICAL"
-        title={categoryPlaylists.message}
+        title={categoryPlaylists?.message ?? ""}
         showAllUrl={"#"}
       >
         {categoryPlaylists?.playlists?.items?.map((playlist) => (
