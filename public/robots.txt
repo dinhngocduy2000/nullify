@@ -1,2 +1,9 @@
+# *
 User-agent: *
 Allow: /
+
+# Host
+Host: https://nullify-eight.vercel.app
+
+# Sitemaps
+Sitemap: https://nullify-eight.vercel.app/sitemap.xml
