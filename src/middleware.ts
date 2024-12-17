@@ -36,9 +36,14 @@ export async function middleware(request: NextRequest) {
   const expires_at = Number(request.cookies.get(COOKIE_KEYS.EXPIRES_AT)?.value);
   const response = NextResponse.next();
   const INACCESSABLE_PAGE: string[] = [URL_ENUM.HOME, URL_ENUM.SECTIONS];
+
+  if (request.nextUrl.pathname.includes(URL_ENUM.SITEMAP)) {
+    return response;
+  }
+
   if (INACCESSABLE_PAGE.includes(request.nextUrl.pathname)) {
     const url = request.nextUrl.clone();
-    url.pathname = URL_ENUM.HOMEPAGE;
+    url.pathname = URL_ENUM.LOGIN;
     return NextResponse.redirect(url);
   }
   if (

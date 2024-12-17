@@ -11,4 +11,5 @@ export enum URL_ENUM {
   USER = "/user",
   DOWNLOAD = "/download",
   SECTIONS = "/sections",
+  SITEMAP = "/sitemap.xml",
 }

@@ -8,7 +8,7 @@ import SidebarComponent from "@/components/Sidebar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Nullify",
+  title: "Nulifier",
   description: "A music player based on Spotify!",
   icons: {
     icon: "./icon.ico",

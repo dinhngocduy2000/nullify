@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Nullify - Login",
+  title: "Nullifier - Login",
   description: "Login to boost you high!",
   icons: {
     icon: "./icon.ico",
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default function LoginLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
